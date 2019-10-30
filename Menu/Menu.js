@@ -1,12 +1,12 @@
 /* This is the data we will be using, study it but don't change anything, yet. */
 
 let menuItems = [
-  'Students',
-  'Faculty',
-  "What's New",
-  'Tech Trends',
-  'Music',
-  'Log Out'
+    "Students",
+    "Faculty",
+    "What's New",
+    "Tech Trends",
+    "Music",
+    "Log Out"
 ];
 
 /* 
@@ -32,4 +32,41 @@ let menuItems = [
 
   Step 6: add the menu component to the DOM.
   
-*/
+  */
+const dropdownMenu = document.querySelector(".header"); //<img class="menu-button" src="./assets/menu.png"/>
+
+// dropdownMenu.addEventListener("click", () => {
+//     dropdownMenu.classList.toggle("menu--open");
+//     console.log("hey");
+// });
+
+const menu = dropdownMenu.appendChild(createMenu(menuItems));
+
+function createMenu(array) {
+    const parentDiv = document.createElement("div");
+    const uL = document.createElement("ul");
+
+    // set hierachy
+    parentDiv.appendChild(uL);
+
+    // set classes
+    parentDiv.classList.add("menu");
+
+    array.forEach(index => {
+        const lI = document.createElement("li");
+        uL.appendChild(lI);
+        lI.textContent = index;
+    });
+
+    // step 3:
+    const reNameMe = document.querySelector(".menu-button");
+    reNameMe.addEventListener("click", () => {
+        parentDiv.classList.toggle("menu--open");
+        console.log("can you see me");
+    });
+    // return
+    return parentDiv;
+}
+
+// append it
+console.log(createMenu(menuItems));
